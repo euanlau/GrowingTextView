@@ -30,7 +30,7 @@
 @class HPGrowingTextView;
 @class HPTextViewInternal;
 
-@protocol HPGrowingTextViewDelegate
+@protocol HPGrowingTextViewDelegate <NSObject>
 
 @optional
 - (BOOL)growingTextViewShouldBeginEditing:(HPGrowingTextView *)growingTextView;
@@ -48,8 +48,6 @@
 - (void)growingTextViewDidChangeSelection:(HPGrowingTextView *)growingTextView;
 - (BOOL)growingTextViewShouldReturn:(HPGrowingTextView *)growingTextView;
 
-- (void)growingTextViewDidTouchBegin:(HPGrowingTextView *)growingTextView;
-- (BOOL)growingTextViewCanPerformAction:(HPGrowingTextView *)growingTextView;
 @end
 
 @interface HPGrowingTextView : UIView <UITextViewDelegate> {
@@ -65,7 +63,6 @@
 	BOOL animateHeightChange;
 	
 	//uitextview properties
-	NSObject <HPGrowingTextViewDelegate> *__unsafe_unretained delegate;
 	UITextAlignment textAlignment; 
 	NSRange selectedRange;
 	BOOL editable;
@@ -83,7 +80,7 @@
 
 
 //uitextview properties
-@property(unsafe_unretained) NSObject<HPGrowingTextViewDelegate> *delegate;
+@property(unsafe_unretained) id <HPGrowingTextViewDelegate> delegate;
 @property(nonatomic,strong) NSString *text;
 @property(nonatomic,strong) UIFont *font;
 @property(nonatomic,strong) UIColor *textColor;
